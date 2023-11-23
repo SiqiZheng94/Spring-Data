@@ -41,12 +41,14 @@ public class AsterixController {
     }
 
 
-
     @DeleteMapping("/delete/{id}")
     public void deleteCharacter(@PathVariable String id){
         service.deleteCharacter(id);
     }
 
 
-
+    @PutMapping("/update/{id}")
+    public Character updateCharacter(@PathVariable String id, @RequestBody String name){
+        return service.updateCharacter(id,name);
+    }
 }
