@@ -1,15 +1,17 @@
 package com.example.mongodb;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.websocket.server.PathParam;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
 @RequestMapping("/asterix/characters")
-
+@RequiredArgsConstructor
 public class AsterixController {
+    /*
     @GetMapping
     public List<Character> getAllCharacters(){
         return List.of(
@@ -25,4 +27,26 @@ public class AsterixController {
                 new Character("10", "Grockelix", 35, "Fischer")
         );
     }
+
+     */
+    private final AsterixService service;
+    @GetMapping
+    public List<Character> getAllCharacter(){
+        return service.getAllCharacter();
+    }
+
+    @PostMapping("/add")
+    public Character addCharacter(@RequestBody Character character){
+        return service.saveCharacter(character);
+    }
+
+
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteCharacter(@PathVariable String id){
+        service.deleteCharacter(id);
+    }
+
+
+
 }
