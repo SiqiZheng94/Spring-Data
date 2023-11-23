@@ -34,6 +34,10 @@ public class AsterixController {
     public List<Character> getAllCharacter(){
         return service.getAllCharacter();
     }
+    @GetMapping("/search")
+    public Character getBy(@RequestParam String id){
+        return service.findById(id);
+    }
 
     @PostMapping("/add")
     public Character addCharacter(@RequestBody Character character){
