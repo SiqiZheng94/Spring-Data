@@ -46,4 +46,13 @@ public class AsterixService {
         }
         throw new RuntimeException("Not found!");
     }
+
+    public Character updateCharacterDTO(String id, NewCharacterDTO characterDTO) {
+        Optional<Character> findC=repo.findById(id);
+        if(findC.isPresent()){
+            Character newCharacter = new Character(findC.get().id(),characterDTO.name(),characterDTO.age(),characterDTO.occupation());
+            return repo.save(newCharacter);
+        }
+        throw new RuntimeException("Not found!");
+    }
 }

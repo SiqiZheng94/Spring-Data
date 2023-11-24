@@ -66,4 +66,9 @@ public class AsterixController {
     public Character updateCharacter(@PathVariable String id, @RequestBody String name){
         return service.updateCharacter(id,name);
     }
+    @PutMapping("/updateDTO/{id}")
+    public Character updateCharacterDTO(@PathVariable String id, @RequestBody NewCharacterDTO characterDTO){
+        return service.updateCharacterDTO(id,characterDTO);
+    }
 }
+
