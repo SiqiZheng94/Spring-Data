@@ -35,6 +35,7 @@ public class AsterixService {
         return repo.save(character1);
     }
     public void deleteCharacter(String id){
+
         repo.deleteById(id);
     }
 
