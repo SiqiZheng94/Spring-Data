@@ -31,10 +31,17 @@ public class AsterixController {
      */
     private final AsterixService service;
     @GetMapping
-    public List<Character> getAllCharacter(){
+    public List<Character> getAllCharacter(@RequestParam(required = false) String name){
+        if(name!=null){
+            return service.findAllByName(name);
 
+        }
         return service.getAllCharacter();
     }
+//    @GetMapping("findall/{name}")
+//    public List<Character> findAllByName(@PathVariable String name){
+//        return service.findAllByName(name);
+//    }
     @GetMapping("/young")
     public List<Character> getAllCharacterYoungerThan(@RequestParam int age){
 
@@ -43,6 +50,11 @@ public class AsterixController {
     @GetMapping("/search")
     public Character getBy(@RequestParam String id){
         return service.findById(id);
+    }
+
+    @GetMapping("/{name}")
+    public Character findByName(@PathVariable String name){
+        return service.findByName(name);
     }
 
     @PostMapping("/add")
@@ -65,5 +77,6 @@ public class AsterixController {
     public Character updateCharacterDTO(@PathVariable String id, @RequestBody NewCharacterDTO characterDTO){
         return service.updateCharacterDTO(id,characterDTO);
     }
+
 }
 

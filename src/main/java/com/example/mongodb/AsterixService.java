@@ -41,11 +41,10 @@ public class AsterixService {
 
 
     public Character updateCharacter(String id, String name) {
-        Optional<Character> findC=repo.findById(id);
-        if(findC.isPresent()){
-            return repo.save(findC.get().withName(name));
-        }
-        throw new RuntimeException("Not found!");
+        Character findC=repo.findById(id).orElseThrow(()->new RuntimeException("Not Found!"));
+
+            return repo.save(findC.withName(name));
+
     }
 
     public Character updateCharacterDTO(String id, NewCharacterDTO characterDTO) {
@@ -55,5 +54,13 @@ public class AsterixService {
             return repo.save(newCharacter);
         }
         throw new RuntimeException("Not found!");
+    }
+
+    public Character findByName(String name){
+        return repo.findByName(name)
+                .orElseThrow(()->new RuntimeException("not found!"));
+    }
+    public List<Character> findAllByName(String name){
+        return repo.findAllByName(name);
     }
 }
