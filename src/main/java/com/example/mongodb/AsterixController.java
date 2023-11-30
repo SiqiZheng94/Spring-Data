@@ -46,11 +46,6 @@ public class AsterixController {
     }
 
     @PostMapping("/add")
-    /*public Character addCharacter(@RequestBody Character character){
-        return service.saveCharacter(character);
-    }
-
-     */
     public Character addCharacter(@RequestBody NewCharacterDTO characterDTO){
         return service.saveCharacter(characterDTO);
     }
